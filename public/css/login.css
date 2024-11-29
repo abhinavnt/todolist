@@ -1,0 +1,19 @@
+body {
+    background-color: #f8f9fa;
+  }
+  .login-container {
+    max-width: 400px;
+    margin: 100px auto;
+  }
+  .login-header {
+    background-color: #007bff;
+    color: white;
+    padding: 20px;
+    border-radius: 15px 15px 0 0;
+  }
+  .login-body {
+    background-color: white;
+    border-radius: 0 0 15px 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+  }

@@ -1,0 +1,56 @@
+body {
+    background-color: #f8f9fa;
+}
+.todo-container {
+    max-width: 600px;
+    margin: 50px auto;
+}
+.todo-header {
+    background-color: #007bff;
+    color: white;
+    padding: 20px;
+    border-radius: 15px 15px 0 0;
+}
+.todo-body {
+    background-color: white;
+    border-radius: 0 0 15px 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.todo-item {
+    border-left: 5px solid #007bff;
+    transition: all 0.3s ease;
+}
+.todo-item:hover {
+    background-color: #f1f3f5;
+}
+.btn-action {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+}
+.completed {
+    text-decoration: line-through;
+    opacity: 0.6;
+}
+
+
+
+
+/* modal */
+
+.small-modal {
+    width: 300px; /* Adjust the width of the modal */
+    font-size: 14px; /* Optional: adjust the font size */
+  }
+
+  /* Optional: further style adjustments for modal content */
+  .small-modal .swal2-title {
+    font-size: 18px; /* Adjust title font size */
+  }
+
+  .small-modal .swal2-content {
+    font-size: 14px; /* Adjust content font size */
+  }
+
+  .small-modal .swal2-confirm, .small-modal .swal2-cancel {
+    padding: 8px 16px; /* Adjust button padding */
+  }

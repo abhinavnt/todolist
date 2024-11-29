@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Todo List Application</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/register.css">
+    
+</head>
+<body>
+    <div class="container register-container">
+        <div class="register-header">
+            <h1 class="text-center mb-0"><i class="fas fa-user-plus me-2"></i>Register</h1>
+        </div>
+        <div class="register-body">
+            <form id="register-form" method="POST" onsubmit="return handleFormSubmission(event)">
+                <div class="mb-3">
+                    <div id="error-message" class="text-center mt-3" style="display: none;">
+                        <span class="badge bg-danger">User already exists</span>
+                    </div>
+                    
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" class="form-control" id="username" name="username">
+                    <div id="username-error" class="invalid-feedback" style="display: none;">Username is required.</div>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email">
+                    <div id="email-error" class="invalid-feedback" style="display: none;">Please enter a valid email address.</div>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" name="password">
+                    <div id="password-error" class="invalid-feedback" style="display: none;">Password is required.</div>
+                </div>
+                <div class="mb-3">
+                    <label for="confirm-password" class="form-label">Confirm Password</label>
+                    <input type="password" class="form-control" id="confirm-password" name="confirm-password">
+                    <div id="confirm-password-error" class="invalid-feedback" style="display: none;">Passwords must match.</div>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">
+                    <i class="fas fa-user-plus me-2"></i>Register
+                </button>
+            </form>
+            <div class="text-center mt-3">
+                <p>Already have an account? <a href="/login">Login here</a></p>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="/javascripts/register.js"></script>
+
+    
+  
+</body>
+</html>

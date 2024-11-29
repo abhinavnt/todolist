@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beautiful Todo List with Checkboxes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="/css/home.css">
+</head>
+<body>
+    <div class="container todo-container">
+        <div class="todo-header">
+            <h1 class="text-center mb-0"><i class="fas fa-clipboard-list me-2"></i>My Todo List</h1>
+        </div>
+        <div class="todo-body p-4">
+            <!-- Add Task Form -->
+            <form id="todo-form" action="/add-task" method="POST" class="mb-4">
+                <div class="input-group">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addTaskModal">
+                        <i class="fas fa-plus me-1"></i> Add Task
+                    </button>
+                </div>
+            </form>
+            <!-- Dynamic Task List -->
+            <ul id="todo-list" class="list-group">
+                <% if (tasks.length === 0) { %>
+                    <li class="list-group-item text-center text-muted">
+                        <i class="fas fa-info-circle me-2"></i>No tasks available.
+                    </li>
+                <% } else { %>
+                    <% tasks.forEach((task, index) => { %>
+                        <li class="list-group-item todo-item d-flex justify-content-between align-items-center">
+                            <div class="d-flex align-items-center">
+                              <input 
+                                type="checkbox" 
+                                class="form-check-input me-2" 
+                                onchange="toggleTask(this)" 
+                                data-index="<%= index %>" 
+                                data-task-name="<%= task.taskName %>" 
+                                <%= task.completed ? 'checked' : '' %>>
+                              <span class="<%= task.completed ? 'text-decoration-line-through' : '' %>">
+                                <%= task.taskName %>
+                              </span>
+                            </div>
+                            <div>
+                              <form class="d-inline">
+                                <button type="button" class="btn btn-sm btn-outline-primary btn-action me-1 edit-task-button"
+                                  data-index="<%= index %>" data-task-name="<%= task.taskName %>">
+                                  <i class="fas fa-edit"></i>
+                                </button>
+                              </form>
+                              
+                              <form action="/delete-task/<%= index %>" method="POST" class="d-inline">
+                                <button type="button" class="btn btn-sm btn-outline-danger btn-action-del">
+                                  <i class="fas fa-trash-alt"></i>
+                                </button>
+                              </form>
+                            </div>
+                          </li>
+                          
+                    <% }) %>
+                <% } %>
+            </ul>
+        </div>
+    </div>
+  
+
+    <!--add modal -->
+
+    <div class="modal fade" id="addTaskModal" tabindex="-1" aria-labelledby="addTaskModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addTaskModalLabel">Add Task</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addTaskForm">
+                        <div class="mb-3">
+                            <label for="taskName" class="form-label">Task Name</label>
+                            <input type="text" id="taskName" class="form-control" required>
+                        </div>
+                        <div id="error-message" class="text-danger" style="display: none;">
+                            Something went wrong, please try again.
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" id="saveTaskButton" class="btn btn-primary">Save Task</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- edit modal -->
+     <!-- Modal -->
+<div class="modal fade" id="taskModal" tabindex="-1" aria-labelledby="taskModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="taskModalLabel">Edit Task</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="taskForm">
+                    <input type="hidden" id="taskIndex" />
+                    <div class="mb-3">
+                        <label for="taskNameInput" class="form-label">Task Name</label>
+                        <input type="text" id="taskNameInput" class="form-control" required />
+                    </div>
+                    <div id="edit-error-message" class="text-danger" style="display: none;">
+                        Something went wrong. Please try again.
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" id="saveTaskChangesButton" class="btn btn-primary">Save Changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script src="/javascripts/home.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script> 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+
+
+
+
+    
+
+
+</body>
+</html>
